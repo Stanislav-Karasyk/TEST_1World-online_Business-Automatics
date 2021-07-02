@@ -4,11 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test_1WO_R&D_Center</title>
+    <title>TEST_1World-online</title>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <h1>USERS LIST</h1>
+
+    <form class="jsAddUserForm">
+       <label>
+        Name
+          <input name="name" type="text"/>
+        </label>
+        <label>
+          Username
+            <input name="username" type="text"/>
+          </label>
+          <label>
+            Email
+              <input name="email" type="email"/>
+            </label>
+            <label>
+              Website
+                <input name="website" type="text"/>
+              </label>
+              <button type="submit">add user</button>
+    </form>
+    
     <table>
       <thead>
         <tr>
@@ -21,7 +42,7 @@
       <tbody class="tbody"></tbody>
     </table>
 
-    <div class="backdrop js-backdrop">
+    <div class="backdrop jsBackdrop">
       <div class="modal"></div>
     </div>
 

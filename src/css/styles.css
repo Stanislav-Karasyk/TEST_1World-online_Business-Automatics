@@ -20,13 +20,13 @@ table td {
 }
 
 /* =====MODAL===== */
-body.show-modal .backdrop {
+body.showModal .backdrop {
   opacity: 1;
   visibility: visible;
   pointer-events: initial;
 }
 
-body.show-modal .modal {
+body.showModal .modal {
   transform: scale(1);
 }
 
