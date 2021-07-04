@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 /* * {
     margin: 0;
     padding: 0;
@@ -35,8 +42,14 @@ th:hover {
 }
 
 .addUserForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
   align-items: flex-end;
 
   max-width: 960px;
@@ -59,12 +72,20 @@ body.showModal .backdrop {
 }
 
 body.showModal .modal {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
   transform: scale(1);
 }
 
 .backdrop {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   position: fixed;
   top: 0;
@@ -77,6 +98,8 @@ body.showModal .modal {
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
+  -webkit-transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+  -o-transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
   transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
 }
 
@@ -87,11 +110,21 @@ body.showModal .modal {
   width: 100%;
   min-height: 320px;
   background-color: #fff;
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 
+  -webkit-transform: scale(1.1);
+
+  -ms-transform: scale(1.1);
+
   transform: scale(1.1);
+  -webkit-transition: -webkit-transform 200ms ease-in-out;
+  transition: -webkit-transform 200ms ease-in-out;
+  -o-transition: transform 200ms ease-in-out;
   transition: transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
 }
 
 /* ============SORT=============== */
