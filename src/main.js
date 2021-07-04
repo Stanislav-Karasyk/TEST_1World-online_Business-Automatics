@@ -4,24 +4,25 @@ const refs = {
   tbody: document.querySelector('.tbody'),
   modal: document.querySelector('.modal'),
   jsBackdrop: document.querySelector('.jsBackdrop'),
-  form: document.querySelector('.jsAddUserForm'),
+  form: document.querySelector('.addUserForm'),
 };
 
-localStorage.setItem('userList', JSON.stringify(usersArr));
+if (!localStorage.userList) {
+  localStorage.setItem('userList', JSON.stringify(usersArr));
+}
 
 let currentUserList = JSON.parse(localStorage.getItem('userList'));
 
-console.log(currentUserList);
-
-function render() {
-  currentUserList.forEach(
-    ({ name, username, email, website, address, company, phone }) => {
+function render(userList) {
+  userList.forEach(
+    ({ id, name, username, email, website, address, company, phone }) => {
       const templateUsersTable = `
       <tr>
       <td data-action="openModal" class="username">${name}</td>
       <td>${username}</td>
       <td>${email}</td>
       <td>${website}</td>
+      <td><button class="jsDeleteBtn button" id=${id} type="button">delete</button></td>
       </tr>`;
 
       refs.tbody.insertAdjacentHTML('afterbegin', templateUsersTable);
@@ -29,6 +30,21 @@ function render() {
       const openModalByName = document.querySelector(
         '[data-action="openModal"]',
       );
+
+      const deleteBtnRef = document.querySelector('.jsDeleteBtn');
+
+      const handlerDeleteBtn = () => {
+        const newUserList = userList.filter(user => user.id !== id);
+
+        currentUserList = newUserList;
+
+        localStorage.setItem('userList', JSON.stringify(newUserList));
+
+        refs.tbody.textContent = '';
+        render(newUserList);
+      };
+
+      deleteBtnRef.addEventListener('click', handlerDeleteBtn);
 
       const templateUserDetails = `
         <h3>USER DETAILS </h3>
@@ -49,7 +65,7 @@ function render() {
   );
 }
 
-render();
+render(currentUserList);
 
 function onCloseModal() {
   document.body.classList.remove('showModal');
@@ -61,29 +77,50 @@ function onBackDropClick(event) {
   }
 }
 
+function addUser(newUser) {
+  const newList = currentUserList;
+  newList.push(newUser);
+
+  localStorage.setItem('userList', JSON.stringify(newList));
+
+  refs.tbody.textContent = '';
+  render(newList);
+}
+
 refs.jsBackdrop.addEventListener('click', onBackDropClick);
 
 const handlerForm = event => {
   event.preventDefault();
 
-  const getId = () => currentUserList.length + 1;
+  const getId = () => Date.now();
   const formElements = event.target.elements;
 
-  const userData = {
+  const newUser = {
     id: getId(),
     name: formElements.name.value,
     username: formElements.username.value,
     email: formElements.email.value,
+    address: {
+      street: '#',
+      suite: '#',
+      city: '#',
+      zipcode: '#',
+      geo: {
+        lat: '#',
+        lng: '#',
+      },
+    },
+    phone: '#',
     website: formElements.website.value,
+    company: {
+      name: '#',
+      catchPhrase: '#',
+      bs: '#',
+    },
   };
 
-  currentUserList.push(userData);
-
-  localStorage.setItem('userList', JSON.stringify(currentUserList));
-
   refs.form.reset();
-
-  console.log(currentUserList);
+  addUser(newUser);
 };
 
 refs.form.addEventListener('submit', handlerForm);

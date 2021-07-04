@@ -9,34 +9,35 @@
   </head>
   <body>
     <h1>USERS LIST</h1>
-
-    <form class="jsAddUserForm">
-       <label>
-        Name
-          <input name="name" type="text"/>
+    <div class="formBox">
+      <form class="addUserForm">
+        <label>
+          Name
+          <input name="name" type="text" />
         </label>
         <label>
           Username
-            <input name="username" type="text"/>
-          </label>
-          <label>
-            Email
-              <input name="email" type="email"/>
-            </label>
-            <label>
-              Website
-                <input name="website" type="text"/>
-              </label>
-              <button type="submit">add user</button>
-    </form>
-    
-    <table>
+          <input name="username" type="text" />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" />
+        </label>
+        <label>
+          Website
+          <input name="website" type="text" />
+        </label>
+        <button class="button" type="submit">add user</button>
+      </form>
+    </div>
+    <table class="table_sort">
       <thead>
         <tr>
           <th>Name</th>
           <th>Username</th>
           <th>Email</th>
           <th>Website</th>
+          <th class="delColumn"></th>
         </tr>
       </thead>
       <tbody class="tbody"></tbody>
@@ -47,5 +48,6 @@
     </div>
 
     <script src="./main.js" type="module"></script>
+    <script src="./sortTable.js" type="module"></script>
   </body>
 </html>

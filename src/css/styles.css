@@ -5,13 +5,23 @@
   } */
 
 table {
-  outline: 1px solid black;
+  border-collapse: collapse;
+}
+tbody tr:nth-child(even) {
+  background: #f0f0ed;
+}
+thead {
+  background: rgb(248, 232, 141);
 }
 
 table th,
 table td {
   padding: 10px;
-  outline: 1px solid black;
+  width: 170px;
+  height: 40px;
+  text-align: center;
+  outline: 2px solid black;
+  border: 2px solid black;
 }
 
 .username:hover {
@@ -19,11 +29,33 @@ table td {
   cursor: pointer;
 }
 
+th:hover {
+  cursor: pointer;
+  background: orange;
+}
+
+.addUserForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  max-width: 960px;
+  margin-bottom: 30px;
+}
+
+.button:hover {
+  cursor: pointer;
+  background: orange;
+}
+
 /* =====MODAL===== */
 body.showModal .backdrop {
   opacity: 1;
   visibility: visible;
   pointer-events: initial;
+}
+.delColumn {
+  pointer-events: none;
 }
 
 body.showModal .modal {
@@ -60,4 +92,24 @@ body.showModal .modal {
 
   transform: scale(1.1);
   transition: transform 200ms ease-in-out;
+}
+
+/* ============SORT=============== */
+th.sorted[data-order='1'],
+th.sorted[data-order='-1'] {
+  position: relative;
+}
+
+th.sorted[data-order='1']::after,
+th.sorted[data-order='-1']::after {
+  right: 10px;
+  position: absolute;
+}
+
+th.sorted[data-order='-1']::after {
+  content: '▼';
+}
+
+th.sorted[data-order='1']::after {
+  content: '▲';
 }
